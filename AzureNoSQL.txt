@@ -1,0 +1,6 @@
+#to display storage account details
+az storage account show -g edx -n edxnosqlstor
+#to display storage acount details with json format in color code | table | tsv
+az storage account show -g edx -n edxnosqlstor --output jsonc
+#connection string
+az storage account show-connection-string --resource-group edx --name edxtut
