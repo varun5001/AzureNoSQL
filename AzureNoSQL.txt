@@ -1,6 +1,20 @@
 #to display storage account details
-az storage account show -g edx -n edxnosqlstor
+az storage account show -g edx -n edxtut
 #to display storage acount details with json format in color code | table | tsv
-az storage account show -g edx -n edxnosqlstor --output jsonc
+az storage account show -g edx -n edxtut --output jsonc
 #connection string
 az storage account show-connection-string --resource-group edx --name edxtut
+#store connection-string
+$env:AZURE_STORAGE_CONNECTION_STRING = $(az storage account show-connection-string --resource-group edx --name edxtut)
+#view connection-string
+$env:AZURE_STORAGE_CONNECTION_STRING
+#create table
+az storage table create -n DemoTable
+#insert entity
+az storage entity insert -t DemoTable -e PartitonKey=Students RowKey=asimpson Age=24 Grade=4
+#query entity
+az storage entity query -t DemoTable
+
+az storage entity query -t DemoTable --filter "Age gt 25"
+
+az storage entity query -t DemoTable --filter "PartitionKey eq 'Students'"
